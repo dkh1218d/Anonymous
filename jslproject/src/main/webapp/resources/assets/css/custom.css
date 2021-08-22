@@ -1,0 +1,173 @@
+@charset "UTF-8";
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+/* Styling h1 and links
+––––––––––––––––––––––––––––––––– */
+
+
+
+.starrating > input {display: none;}  /* Remove radio buttons */
+
+.starrating > label:before { 
+  content: "\f005"; /* Star */
+  margin: 2px;
+  font-size: 3em;
+  font-family: FontAwesome;
+  display: inline-block; 
+}
+
+.starrating > label
+{
+  color: #222222; /* Start color when not clicked */
+}
+
+.starrating > input:checked ~ label
+{ color: #ffca08 ; } /* Set yellow color when star checked */
+
+.starrating > input:hover ~ label
+{ color: #ffca08 ;  } /* Set yellow color when star hover */
+
+.starrating_comment > input {display: none;}  /* Remove radio buttons */
+
+.starrating_comment > label:before { 
+  content: "\f005"; /* Star */
+  margin: 2px;
+  font-size: 1em;
+  font-family: FontAwesome;
+  display: inline-block; 
+}
+
+.starrating_comment > label
+{
+  color: #222222; /* Start color when not clicked */
+}
+
+.starrating_comment > input:checked ~ label
+{ color: #ffca08 ; } /* Set yellow color when star checked */
+
+
+.rate_comment_container{
+	display: block;
+}
+.comment-area-wrapper {
+	margin: 0 15% 0 15%;
+}
+
+.rate_container {
+	display: flex;
+}
+
+.rate_container .name{
+	font-size: 18px;
+    color: black;
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+
+
+
+.avatar_container{
+	text-align:center;
+	margin:50px;
+}
+
+
+.avatar_container img {
+	
+	margin: 0px auto;
+	
+  width: 25%;
+  height: 25%;
+  border-radius: 50%;
+}
+
+.mypage-tabcontent {
+  display: none;
+  -webkit-animation: fadeEffect 0.5s;
+  animation: fadeEffect 0.5s;
+}
+
+
+/* Create an active/current tablink class */
+.list a.active {
+  color: black !important;
+}
+
+@-webkit-keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.order_box {
+	display:block;
+	width:100%;
+	margin:auto;
+	background-color: #f7f7f7;
+    padding: 35px 40px;
+    margin-bottom: 20px;
+}
+.add_to_cart{
+	display:block;
+}
+
+.order_card{
+	display: flex;
+}
+
+.card_left{
+	width:50%;
+}
+
+.option_text{
+	display:block;
+	text-align: left;
+}
+
+.card_right{
+	width:50%;
+	text-align: center;
+}
+
+.addtocart_btn{
+	margin:auto;
+	text-align: center;
+	width:50%;
+	display:block;
+	padding:2%;
+	
+}
+
+.quantity_purchase{
+	display:flex;
+	margin:0;
+	width:100%;
+}
+
+.quantity_purchasebox{
+	margin:auto;
+	display:block;
+}
+.card_right .order-box{
+	padding:0;
+}
+
+.card_left .order-box{
+	padding:0;
+	margin-right:5px;
+	width:100%;
+}
+
+.option-block{
+	display:flex;
+	width:100%;
+}
+
+.option-selectbox{
+	margin:1em;
+}

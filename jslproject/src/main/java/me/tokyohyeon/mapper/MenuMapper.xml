@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.tokyohyeon.mapper.MenuMapper">
+	<select id="menuList" resultType="me.tokyohyeon.domain.MenuVO">
+		select level, category_no, category_name, path, is_hot from menu start with parent_no is null connect by prior category_no = parent_no
+	</select>
+	
+	<select id="categoryList" resultType="me.tokyohyeon.domain.CategoryVO">
+		select level, category_no, category_name, parent_no from category start with parent_no is null connect by prior category_no = parent_no
+	</select>
+</mapper>

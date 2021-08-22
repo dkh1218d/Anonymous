@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.tokyohyeon.mapper.ImageMapper">
+	<insert id="insert">
+		INSERT INTO IMG(IMG_ID, ALIAS, IMG_NAME, SIZE_W, SIZE_H, LEN, BINARY) 
+		VALUES (IMAGE_SEQ_IDX.NEXTVAL, #{ALIAS}, #{IMG_NAME}, #{SIZE_W}, #{SIZE_H}, #{LEN}, #{Binary})
+	</insert>
+	
+	<select id="readAlias" resultType="me.tokyohyeon.domain.ImgVO">
+		select * from IMG where ALIAS = #{ALIAS}
+	</select>
+	
+	<select id="readIndex" resultType="me.tokyohyeon.domain.ImgVO">
+		select * from IMG where IMG_ID = #{IMG_ID}
+	</select>
+</mapper>

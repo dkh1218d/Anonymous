@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.tokyohyeon.mapper.ProductMapper">
+
+	<!-- 검색조건 게시물 카운트 -->
+	<select id="boardCount" resultType="int">
+		select count(*) from tbl_board
+			<if test="search != null and key != null">
+				where ${search} like '%' || #{key} || '%' 
+			</if>
+	</select>
+
+	<!-- 
+	<select id="getListx" resultType="me.tokyohyeon.domain.ProductVO">
+		select X.* from (select rownum as rnum, A.* from (
+			select * from tbl_board
+			<if test="search != null and key != null">
+				where ${search} like '%' || #{key} || '%' 
+			</if>
+			order by idx desc) A where 
+			<![CDATA[
+				rownum <= #{endpage}) X where X.rnum >= #{startpage}
+			]]>
+	</select>
+	-->
+
+	<select id="getList" resultType="me.tokyohyeon.domain.ProductVO">
+		select X.* from (select rownum as rnum, A.* from (
+			select p.*, i.alias image_alias from product p, img i where p.img_id=i.img_id order by p.p_id desc) A where 
+			<![CDATA[
+				rownum <= #{endpage}) X where X.rnum >= #{startpage}
+			]]>
+	</select>
+	
+	<select id="getListWithPaging" resultType="me.tokyohyeon.domain.ProductVO">
+		select * from product
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO PRODUCT(p_id, category_no, img_id, p_stock, p_price, p_name, p_desc, p_star, p_tag) 
+		VALUES (PRODUCT_SEQ_IDX.NEXTVAL, #{category_no}, #{img_id}, #{p_stock}, #{p_price}, #{p_name}, #{p_desc}, #{p_star}, #{p_tag})
+	</insert>
+</mapper>

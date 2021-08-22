@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.tokyohyeon.mapper.AdminMapper">
+	<select id="gridMemberList" resultType="me.tokyohyeon.domain.UserVO">
+		<![CDATA[
+			select * from member
+		]]>
+	</select>
+
+<sql id="criteria">
+	<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+
+					<choose>
+						<when test="type == 'T'.toString()">
+						where 	title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+						where 	content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+						where 	writer	 like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+
+			</foreach>
+		</trim>
+	</sql>
+	
+	
+	
+	
+		<select id="MemberTotalCount" resultType="int">
+		select count(*) from
+		member 
+				<include refid="criteria"></include>
+<!-- 		bno > 0 -->
+	</select>
+	
+		<select id="getMemberListWithPaging"
+		resultType="me.tokyohyeon.domain.UserVO">
+	<![CDATA[select userid from 
+	( select /*+INDEX_DESC(member_pk) */ 
+	rownum rn, username,userid,email,tel,TO_DATE(regdate, 'YYYY-MM-DD'),birth,TO_DATE(joindate, 'YYYY-MM-DD'),TO_DATE(birth, 'YYYY-MM-DD'),managerkey
+	from member where 	]]>
+		<include refid="criteria"></include>
+
+	<![CDATA[
+	rownum <= #{pageNum} * #{amount})
+	where rn > ((#{pageNum} -1) * #{amount})
+	]]>
+
+
+
+	</select>
+</mapper>

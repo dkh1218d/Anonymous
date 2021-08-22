@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="me.tokyohyeon.mapper.LoginMapper">
+
+
+	
+	<insert id="MapperInsert">
+		insert into member(userid,passwd,email,tel,username,postcode,detailaddress,address,extraaddress)
+			values ( #{userid}, #{passwd}, #{email}, #{tel}, #{username}, #{postcode}, #{detailaddress}, #{address}, #{extraaddress})
+	</insert>
+	
+		<select id="SNSLogin" resultType="me.tokyohyeon.domain.UserVO">
+		<![CDATA[
+			select * from Member where snslogin = #{snslogin} and snsid = #{snsid}
+		]]>
+	</select>
+	
+		<select id="checkSignup" resultType="int">
+		
+		<![CDATA[
+			select count(*) from Member where userid = #{userid}
+		]]>
+	</select>
+
+</mapper>
+
